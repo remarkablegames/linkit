@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 
+import { key } from '../constants';
 import { getBackgroundColor, getPairs } from '../helpers';
 import { getLevel, type Level } from '../levels';
 
@@ -10,7 +11,7 @@ export class Main extends Phaser.Scene {
   level!: Level;
 
   constructor() {
-    super('main');
+    super(key.scene.main);
   }
 
   init(data: { levelNumber: number }) {
@@ -29,9 +30,6 @@ export class Main extends Phaser.Scene {
     this.renderLevelTitle();
     this.addCircles();
     this.lines = this.add.group();
-
-    // const { centerX, centerY } = this.cameras.main;
-    // this.add.image(centerX, centerY, 'Background').setOrigin(0.5).setScale(0.5);
 
     let start: Phaser.GameObjects.Arc | null = null;
 
@@ -56,7 +54,7 @@ export class Main extends Phaser.Scene {
               start.setScale(1);
               start = null;
               this.removeLine(line);
-              this.playSound('drop');
+              this.playSound(key.audio.drop);
               return;
             }
 
@@ -76,10 +74,10 @@ export class Main extends Phaser.Scene {
             });
 
             circle.setData('line', line);
-            this.playSound('click');
+            this.playSound(key.audio.click);
 
             if (this.checkSolution()) {
-              this.playSound('success');
+              this.playSound(key.audio.success);
               this.scene.restart({ levelNumber: this.levelNumber + 1 });
               return;
             }
@@ -105,13 +103,13 @@ export class Main extends Phaser.Scene {
             start.setScale(1.5);
             start.setData('line', line);
 
-            this.playSound('click');
+            this.playSound(key.audio.click);
           }
         } else if (start) {
           // remove line when clicked outside
           const line = this.getLine(start);
           this.removeLine(line);
-          this.playSound('drop');
+          this.playSound(key.audio.drop);
 
           start.setScale(1);
           start = null;
@@ -141,7 +139,8 @@ export class Main extends Phaser.Scene {
     try {
       this.sound.play(key);
     } catch (error) {
-      // pass
+      // eslint-disable-next-line no-console
+      console.error(error);
     }
   }
 
@@ -312,7 +311,7 @@ export class Main extends Phaser.Scene {
     });
 
     if (lineIntersects) {
-      this.playSound('error');
+      this.playSound(key.audio.error);
       alert('Lines must not intersect.');
     }
 
