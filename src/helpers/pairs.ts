@@ -1,4 +1,4 @@
-export function getPairs<T>(array: T[]) {
+export function getPairs<T>(array: T[]): T[][] {
   if (!Array.isArray(array)) {
     throw new TypeError('First argument must be an array');
   }
@@ -8,7 +8,7 @@ export function getPairs<T>(array: T[]) {
   }
 
   return array.reduce(
-    (previousValue, currentValue, index) =>
+    (previousValue: T[][], currentValue, index) =>
       previousValue.concat(
         array.slice(index + 1).map((value) => [currentValue, value]),
       ),
