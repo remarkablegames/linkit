@@ -1,34 +1,14 @@
 import Phaser from 'phaser';
 
-import * as scenes from './scenes';
+import { Boot, Main } from './scenes';
 
-/**
- * https://rexrainbow.github.io/phaser3-rex-notes/docs/site/game/
- */
 new Phaser.Game({
-  width: 800, // 1024
-  height: 600, // 768
-  title: 'Linkit',
-  url: import.meta.env.VITE_APP_HOMEPAGE,
-  version: import.meta.env.VITE_APP_VERSION,
-  scene: [
-    scenes.Boot,
-    ...Object.values(scenes).filter((scene) => scene !== scenes.Boot),
-  ],
-  physics: {
-    default: 'arcade',
-    arcade: {
-      gravity: {
-        x: 0,
-        y: 300,
-      },
-      debug: import.meta.env.DEV,
-    },
-  },
-  disableContextMenu: import.meta.env.PROD,
-  backgroundColor: '#fff',
+  width: 600,
+  height: 800,
+  scene: [Boot, Main],
+  transparent: true,
   scale: {
-    mode: Phaser.Scale.FIT,
+    mode: window.innerWidth < 600 ? Phaser.Scale.FIT : Phaser.Scale.NONE,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
 });

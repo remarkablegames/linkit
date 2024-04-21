@@ -1,0 +1,321 @@
+import Phaser from 'phaser';
+
+import { getBackgroundColor, getPairs } from '../helpers';
+import { getLevel, type Level } from '../levels';
+
+export class Main extends Phaser.Scene {
+  circles!: Phaser.GameObjects.Container;
+  levelNumber = 0;
+  lines!: Phaser.GameObjects.Group;
+  level!: Level;
+
+  constructor() {
+    super('main');
+  }
+
+  init(data: { levelNumber: number }) {
+    const level = getLevel(data.levelNumber);
+    if (level) {
+      this.levelNumber = data.levelNumber;
+      this.level = level;
+    } else {
+      this.levelNumber = 0;
+      this.level = getLevel(0);
+    }
+  }
+
+  create() {
+    this.setBackgroundColor();
+    this.renderLevelTitle();
+    this.addCircles();
+    this.lines = this.add.group();
+
+    // const { centerX, centerY } = this.cameras.main;
+    // this.add.image(centerX, centerY, 'Background').setOrigin(0.5).setScale(0.5);
+
+    let start: Phaser.GameObjects.Arc | null = null;
+
+    this.input.on(
+      'pointerdown',
+      (
+        _pointer: Phaser.Input.Pointer,
+        currentlyOver: Phaser.GameObjects.Arc[],
+      ) => {
+        const circle = currentlyOver[0];
+
+        if (circle) {
+          // end line when clicked on circle
+          if (start) {
+            const line = this.getLine(start);
+
+            // remove line when clicked on wrong color or circle with existing line
+            if (
+              start.getData('color') !== circle.getData('color') ||
+              circle.getData('line')
+            ) {
+              start.setScale(1);
+              start = null;
+              this.removeLine(line);
+              this.playSound('drop');
+              return;
+            }
+
+            line.setData('end', circle);
+            line.setTo(
+              this.getCirclePosition('x', start),
+              this.getCirclePosition('y', start),
+              this.getCirclePosition('x', circle),
+              this.getCirclePosition('y', circle),
+            );
+
+            line.setData('position', {
+              x1: this.getCirclePosition('x', start),
+              y1: this.getCirclePosition('y', start),
+              x2: this.getCirclePosition('x', circle),
+              y2: this.getCirclePosition('y', circle),
+            });
+
+            circle.setData('line', line);
+            this.playSound('click');
+
+            if (this.checkSolution()) {
+              this.playSound('success');
+              this.scene.restart({ levelNumber: this.levelNumber + 1 });
+              return;
+            }
+
+            start.setScale(1);
+            start = null;
+            // no starting line
+          } else {
+            // recreate line if exists on circle
+            let line = this.getLine(circle);
+            if (line) {
+              this.removeLine(line);
+            }
+
+            // start line when clicked on circle
+            line = this.add
+              .line(0, 0, 0, 0, 0, 0, circle.getData('color'))
+              .setLineWidth(2)
+              .setData('start', circle);
+            this.lines.add(line);
+
+            start = circle;
+            start.setScale(1.5);
+            start.setData('line', line);
+
+            this.playSound('click');
+          }
+        } else if (start) {
+          // remove line when clicked outside
+          const line = this.getLine(start);
+          this.removeLine(line);
+          this.playSound('drop');
+
+          start.setScale(1);
+          start = null;
+        }
+      },
+    );
+
+    if (this.game.device.os.desktop) {
+      this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
+        if (start) {
+          const line = this.getLine(start);
+          line.setTo(
+            this.getCirclePosition('x', start),
+            this.getCirclePosition('y', start),
+            pointer.x,
+            pointer.y,
+          );
+        }
+      });
+    }
+  }
+
+  /**
+   * Plays sound.
+   */
+  private playSound(key: string) {
+    try {
+      this.sound.play(key);
+    } catch (error) {
+      // pass
+    }
+  }
+
+  /**
+   * Sets background color on game and body.
+   */
+  private setBackgroundColor() {
+    const backgroundColor = getBackgroundColor();
+    this.cameras.main.setBackgroundColor(backgroundColor);
+    document.body.style.backgroundColor = backgroundColor;
+  }
+
+  /**
+   * Displays level title.
+   */
+  private renderLevelTitle() {
+    this.add.text(this.cameras.main.centerX, 16, String(this.levelNumber), {
+      color: '#000000',
+      fontSize: '36px',
+    });
+  }
+
+  /**
+   * Adds circles.
+   */
+  private addCircles() {
+    this.circles = this.add.container();
+
+    this.level.puzzle.forEach((rows) => {
+      rows.forEach((color) => {
+        const isColor = color > -1;
+
+        const circle = this.add
+          .circle(0, 0, 16, color)
+          .setOrigin(0.5)
+          .setInteractive({
+            useHandCursor: true,
+          })
+          .setData('color', color)
+          .setActive(isColor)
+          .setVisible(isColor);
+
+        this.circles.add(circle);
+      });
+    });
+
+    Phaser.Actions.GridAlign(this.circles.getAll(), this.getGridOptions());
+
+    const { centerX, centerY } = this.cameras.main;
+    const { height, width } = this.circles.getBounds();
+    this.circles.setX(centerX - width / 2);
+    this.circles.setY(centerY - height / 2);
+  }
+
+  /**
+   * Gets grid config.
+   *
+   * @returns - Grid options.
+   */
+  private getGridOptions() {
+    const { cellWidth, cellHeight, puzzle } = this.level;
+    const columns = puzzle[0].length;
+    const rows = puzzle.length;
+
+    return {
+      width: columns,
+      height: rows,
+      cellWidth,
+      cellHeight,
+    };
+  }
+
+  /**
+   * Gets circle X or Y position.
+   *
+   * @param circle - The circle.
+   * @returns - The circle X or Y position.
+   */
+  private getCirclePosition(
+    position: 'x' | 'y',
+    circle: Phaser.GameObjects.Arc,
+  ) {
+    return circle.parentContainer[position] + circle[position];
+  }
+
+  /**
+   * Gets line associated with circle.
+   *
+   * @param circle - The circle.
+   * @returns - The line.
+   */
+  private getLine(circle: Phaser.GameObjects.Arc): Phaser.GameObjects.Line {
+    return circle.getData('line');
+  }
+
+  /**
+   * Deletes line and removes it from group.
+   *
+   * @param line - The line.
+   */
+  private removeLine(line: Phaser.GameObjects.Line) {
+    this.lines.remove(line);
+
+    ['start', 'end'].forEach((key) => {
+      const circle = line.getData(key);
+      if (circle) {
+        circle.setData('line');
+      }
+      line.setData(key);
+    });
+
+    line.destroy();
+  }
+
+  /**
+   * Checks if every circle has a line.
+   *
+   * @returns - If puzzle is solved.
+   */
+  private checkSolution(): boolean {
+    if (this.areLinesIntersecting()) {
+      return false;
+    }
+
+    const circleMissingLine = this.circles
+      .getAll()
+      .filter((circle) => circle.active)
+      .some((circle) => !circle.getData('line'));
+
+    if (circleMissingLine) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Checks if lines are intersecting.
+   *
+   * @returns - If lines are intersecting.
+   */
+  private areLinesIntersecting(): boolean {
+    const lineIntersects = getPairs(
+      this.lines.getChildren() as Phaser.GameObjects.Line[],
+    ).some((lines) => {
+      if (lines.length < 2) {
+        return false;
+      }
+
+      const position1 = lines[0].getData('position');
+      const position2 = lines[1].getData('position');
+
+      const line1 = new Phaser.Geom.Line(
+        position1.x1,
+        position1.y1,
+        position1.x2,
+        position1.y2,
+      );
+
+      const line2 = new Phaser.Geom.Line(
+        position2.x1,
+        position2.y1,
+        position2.x2,
+        position2.y2,
+      );
+
+      return Phaser.Geom.Intersects.LineToLine(line1, line2);
+    });
+
+    if (lineIntersects) {
+      this.playSound('error');
+      alert('Lines must not intersect.');
+    }
+
+    return lineIntersects;
+  }
+}

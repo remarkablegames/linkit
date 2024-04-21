@@ -1,24 +1,22 @@
 import Phaser from 'phaser';
 
-import { dude, platform, sky, star } from '../assets';
-import { key } from '../constants';
+import { search } from '../helpers';
 
 export class Boot extends Phaser.Scene {
   constructor() {
-    super(key.scene.boot);
+    super('boot');
   }
 
   preload() {
-    this.load.spritesheet(key.image.dude, dude, {
-      frameWidth: 32,
-      frameHeight: 48,
-    });
-    this.load.image(key.image.ground, platform);
-    this.load.image(key.image.sky, sky);
-    this.load.image(key.image.star, star);
+    this.load.audio('click', '/audio/drop_004.ogg');
+    this.load.audio('drop', '/audio/drop_002.ogg');
+    this.load.audio('error', '/audio/back_001.ogg');
+    this.load.audio('success', '/audio/confirmation_004.ogg');
   }
 
   create() {
-    this.scene.start(key.scene.main);
+    this.scene.start('main', {
+      levelNumber: Number(search.get('level')) || 0,
+    });
   }
 }
