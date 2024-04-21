@@ -1,5 +1,5 @@
 {
-  "name": "phaser-template",
+  "name": "linkit",
   "version": "1.0.0-alpha",
   "description": "A template for building Phaser games.",
   "author": "Mark <mark@remarkablemark.org>",
@@ -14,7 +14,7 @@
     "preview": "vite preview",
     "start": "vite --open"
   },
-  "homepage": "https://remarkablegames.org/phaser-template/",
+  "homepage": "https://remarkablegames.org/linkit/",
   "dependencies": {
     "phaser": "3.80.1",
     "phaser-jsx": "0.10.0"

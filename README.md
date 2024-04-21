@@ -1,20 +1,16 @@
-# phaser-template
+# linkit
 
-<kbd>phaser-template</kbd> is a template for making [Phaser](https://phaser.io/) games.
+🔴 Linkit is a puzzle game where you connect dots of the same color.
 
-Inspired by the tutorial "[Making your first Phaser 3 game](https://phaser.io/tutorials/making-your-first-phaser-3-game)".
+This game was made for the [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024), in which the theme was `power`.
 
-Demo:
+Play the game on:
 
-- [remarkablegames](https://remarkablegames.org/phaser-template/)
-- [Replit](https://replit.com/talk/share/Phaser-Template/22850)
-- [CodeSandbox](https://codesandbox.io/s/phaser-template-4fy4y)
+- [remarkablegames](https://remarkablegames.org/linkit/)
 
-Stack:
+## Ideation
 
-- [Phaser](https://phaser.io/)
-- [Vite](https://vitejs.dev/)
-- [GitHub Pages](https://pages.github.com/)
+- [Excalidraw](https://excalidraw.com/#json=kdRfqSm9UoL0cEQ8MPRNo,mMrxHx-OPwRogYySd-1PqQ)
 
 ## Prerequisites
 
@@ -25,53 +21,14 @@ Stack:
 Clone the repository:
 
 ```sh
-git clone https://github.com/remarkablegames/phaser-template.git
-cd phaser-template
+git clone https://github.com/remarkablegames/linkit.git
+cd linkit
 ```
-
-Rename the project:
-
-```sh
-git grep -l phaser-template | xargs sed -i '' -e 's/phaser-template/my-game/g'
-git grep -l 'Phaser Template' | xargs sed -i '' -e 's/Phaser Template/My Game/g'
-```
-
-Update the files:
-
-- [ ] `README.md`
-- [ ] `package.json`
-- [ ] `index.html`
-- [ ] `public/manifest.json`
-- [ ] `src/index.ts`
 
 Install the dependencies:
 
 ```sh
 npm install
-```
-
-Initialize a new repository:
-
-```sh
-rm -rf .git
-git init
-```
-
-Make your first commit:
-
-```sh
-git add .
-git commit -m 'feat: initialize project from phaser-template'
-```
-
-> [!NOTE]
-> Commit messages follow [Conventional Commits](https://conventionalcommits.org/), which helps with release.
-
-Once you're ready, [push the local repository to GitHub](https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/) (or another remote repository):
-
-```sh
-git remote add origin <remote-repository-url>
-git push origin -u origin master
 ```
 
 ## Environment Variables
