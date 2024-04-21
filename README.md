@@ -1,4 +1,11 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/remarkablegames/linkit/master/public/screenshots/title.png" alt="Linkit" width="360">
+</p>
+
 # Linkit
+
+![release](https://img.shields.io/github/v/release/remarkablegames/linkit)
+[![build](https://github.com/remarkablegames/linkit/actions/workflows/build.yml/badge.svg)](https://github.com/remarkablegames/linkit/actions/workflows/build.yml)
 
 🔴 Linkit is a puzzle where you connect the dots.
 
