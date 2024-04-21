@@ -1,12 +1,18 @@
 # Linkit
 
-🔴 Linkit is a puzzle game where you connect dots of the same color.
+🔴 Linkit is a puzzle where you connect the dots.
 
-This game was made for the [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024), in which the theme was `power`.
+This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024), where the theme was `power`.
 
 Play the game on:
 
 - [remarkablegames](https://remarkablegames.org/linkit/)
+
+## Credits
+
+- [remarkablemark](https://github.com/remarkablemark) - Developer
+- [Rob Cohen](https://github.com/rmacohen) - Level Design
+- [Kenney Interface Sounds](https://kenney.nl/assets/interface-sounds)
 
 ## Ideation
 
