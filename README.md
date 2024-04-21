@@ -9,7 +9,7 @@
 
 🔴 Linkit is a puzzle where you connect the dots.
 
-This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024), where the theme was `power`.
+This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024), which the theme was `power`.
 
 Play the game on:
 
