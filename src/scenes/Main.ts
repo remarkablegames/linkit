@@ -157,10 +157,17 @@ export class Main extends Phaser.Scene {
    * Displays level title.
    */
   private renderLevelTitle() {
-    this.add.text(this.cameras.main.centerX, 16, String(this.levelNumber), {
-      color: '#000000',
-      fontSize: '36px',
-    });
+    this.add
+      .text(
+        this.cameras.main.centerX,
+        32,
+        this.levelNumber === 0 ? 'Linkit' : String(this.levelNumber),
+        {
+          color: '#000000',
+          fontSize: '36px',
+        },
+      )
+      .setOrigin(0.5);
   }
 
   /**
