@@ -1,4 +1,4 @@
-# linkit
+# Linkit
 
 🔴 Linkit is a puzzle game where you connect dots of the same color.
 
@@ -11,6 +11,7 @@ Play the game on:
 ## Ideation
 
 - [Excalidraw](https://excalidraw.com/#json=kdRfqSm9UoL0cEQ8MPRNo,mMrxHx-OPwRogYySd-1PqQ)
+- [Replit](https://replit.com/@remarkablemark/Linkit)
 
 ## Prerequisites
 
