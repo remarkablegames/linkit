@@ -14,6 +14,7 @@ This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024)
 Play the game on:
 
 - [remarkablegames](https://remarkablegames.org/linkit/)
+- [itch.io](https://remarkablegames.itch.io/linkit)
 
 ## Credits
 
