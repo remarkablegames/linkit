@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/remarkablegames/linkit/compare/v1.0.0...v1.0.1) (2024-04-22)
+
+
+### Bug Fixes
+
+* **constants:** improve color contrast ([47019ca](https://github.com/remarkablegames/linkit/commit/47019caa07def87363bc2df8c89e4388c27f5cb0))
+
 ## 1.0.0 (2024-04-21)
 
 
