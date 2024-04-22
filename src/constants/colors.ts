@@ -11,19 +11,19 @@ export const _ = -1;
 export const R = 0xdc143c;
 
 // Pink
-export const P = 0xffc0cb;
+export const P = 0xff1493;
 
 // Orange
-export const O = 0xff4500;
+export const O = 0xff7f50;
 
 // Yellow
 export const Y = 0xffd700;
 
 // Lavender
-export const L = 0xe6e6fa;
+export const L = 0xdda0dd;
 
 // Violet
-export const V = 0xee82ee;
+export const V = 0xff00ff;
 
 // Magenta
 export const M = 0x8b008b;
@@ -50,4 +50,4 @@ export const N = 0xd2691e;
 export const K = 0x000000;
 
 // Silver
-export const S = 0xc0c0c0;
+export const S = 0x778899;
