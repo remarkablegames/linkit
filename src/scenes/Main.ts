@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 import { key } from '../constants';
-import { Circle, getCircleContainer, setCircleContainer } from '../gameobjects';
+import { Circle } from '../gameobjects';
 import { getBackgroundColor, getPairs } from '../helpers';
 import { getLevel, type Level } from '../levels';
 
@@ -168,13 +168,13 @@ export class Main extends Phaser.Scene {
    * Adds circles.
    */
   private addCircles() {
-    setCircleContainer(this);
+    Circle.setContainer(this);
 
     this.level.puzzle.forEach((rows) => {
       rows.forEach((color) => new Circle(this, color));
     });
 
-    const container = getCircleContainer(this);
+    const container = Circle.getContainer(this);
     Phaser.Actions.GridAlign(container.getAll(), this.getGridOptions());
 
     const { centerX, centerY } = this.cameras.main;
@@ -254,7 +254,7 @@ export class Main extends Phaser.Scene {
       return false;
     }
 
-    const circleMissingLine = getCircleContainer(this)
+    const circleMissingLine = Circle.getContainer(this)
       .getAll<Circle>()
       .filter((circle: Circle) => circle.active)
       .some((circle: Circle) => !circle.getData('line'));

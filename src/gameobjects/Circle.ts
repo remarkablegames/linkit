@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 
 import { _ } from '../constants';
 
-const CIRCLE_CONTAINER = 'circles';
+const CIRCLE_CONTAINER = 'CIRCLE_CONTAINER';
 
 export class Circle extends Phaser.GameObjects.Arc {
   color: number;
@@ -29,32 +29,32 @@ export class Circle extends Phaser.GameObjects.Arc {
       .setActive(hasColor)
       .setVisible(hasColor);
 
-    let container = getCircleContainer(scene);
+    let container = Circle.getContainer(scene);
 
     if (!container) {
-      container = setCircleContainer(scene);
+      container = Circle.setContainer(scene);
     }
 
     container.add(this);
   }
-}
 
-/**
- * Adds new circle container to scene.
- *
- * @returns - Circle container.
- */
-export function setCircleContainer(scene: Phaser.Scene) {
-  const container = scene.add.container();
-  scene.data.set(CIRCLE_CONTAINER, container);
-  return container;
-}
+  /**
+   * Adds new circle container to scene.
+   *
+   * @returns - Circle container.
+   */
+  static setContainer(scene: Phaser.Scene) {
+    const container = scene.add.container();
+    scene.data.set(CIRCLE_CONTAINER, container);
+    return container;
+  }
 
-/**
- * Gets circle container from scene.
- *
- * @returns - Circle container.
- */
-export function getCircleContainer(scene: Phaser.Scene) {
-  return scene.data.get(CIRCLE_CONTAINER) as Phaser.GameObjects.Container;
+  /**
+   * Gets circle container from scene.
+   *
+   * @returns - Circle container.
+   */
+  static getContainer(scene: Phaser.Scene) {
+    return scene.data.get(CIRCLE_CONTAINER) as Phaser.GameObjects.Container;
+  }
 }
