@@ -3,23 +3,21 @@ import Phaser from 'phaser';
 import { _ } from '../constants';
 
 const CIRCLE_CONTAINER = 'CIRCLE_CONTAINER';
+const x = 0;
+const y = 0;
+const radius = 16;
+const startAngle = 0;
+const endAngle = 360;
+const anticlockwise = false;
 
 export class Circle extends Phaser.GameObjects.Arc {
   color: number;
 
   constructor(scene: Phaser.Scene, color: number) {
-    const x = 0;
-    const y = 0;
-    const radius = 16;
-    const startAngle = 0;
-    const endAngle = 360;
-    const anticlockwise = false;
-
     super(scene, x, y, radius, startAngle, endAngle, anticlockwise, color);
     scene.add.existing(this);
 
     this.color = color;
-
     const hasColor = color !== _;
 
     this.setOrigin(0.5)
@@ -29,13 +27,7 @@ export class Circle extends Phaser.GameObjects.Arc {
       .setActive(hasColor)
       .setVisible(hasColor);
 
-    let container = Circle.getContainer(scene);
-
-    if (!container) {
-      container = Circle.setContainer(scene);
-    }
-
-    container.add(this);
+    Circle.getContainer(scene).add(this);
   }
 
   /**
