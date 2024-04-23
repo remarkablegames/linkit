@@ -50,17 +50,17 @@ export class Main extends Phaser.Scene {
 
             this.start.line.end = circle;
             this.start.line.setTo(
-              this.getCirclePosition('x', this.start),
-              this.getCirclePosition('y', this.start),
-              this.getCirclePosition('x', circle),
-              this.getCirclePosition('y', circle),
+              this.start.absoluteX,
+              this.start.absoluteY,
+              circle.absoluteX,
+              circle.absoluteY,
             );
 
             this.start.line.position = {
-              x1: this.getCirclePosition('x', this.start),
-              y1: this.getCirclePosition('y', this.start),
-              x2: this.getCirclePosition('x', circle),
-              y2: this.getCirclePosition('y', circle),
+              x1: this.start.absoluteX,
+              y1: this.start.absoluteY,
+              x2: circle.absoluteX,
+              y2: circle.absoluteY,
             };
 
             circle.line = this.start.line;
@@ -108,8 +108,8 @@ export class Main extends Phaser.Scene {
       this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
         if (this.start?.line) {
           this.start.line.setTo(
-            this.getCirclePosition('x', this.start),
-            this.getCirclePosition('y', this.start),
+            this.start.absoluteX,
+            this.start.absoluteY,
             pointer.x,
             pointer.y,
           );
@@ -192,16 +192,6 @@ export class Main extends Phaser.Scene {
       cellWidth,
       cellHeight,
     };
-  }
-
-  /**
-   * Gets circle X or Y position.
-   *
-   * @param circle - The circle.
-   * @returns - The circle X or Y position.
-   */
-  private getCirclePosition(position: 'x' | 'y', circle: Circle) {
-    return circle.parentContainer[position] + circle[position];
   }
 
   /**

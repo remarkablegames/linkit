@@ -33,6 +33,20 @@ export class Circle extends Phaser.GameObjects.Arc {
   }
 
   /**
+   * The absolute x position of this circle.
+   */
+  get absoluteX() {
+    return this.parentContainer.x + this.x;
+  }
+
+  /**
+   * The absolute y position of this circle.
+   */
+  get absoluteY() {
+    return this.parentContainer.y + this.y;
+  }
+
+  /**
    * Adds new circle container to scene.
    *
    * @returns - Circle container.
