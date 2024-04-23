@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/remarkablegames/linkit/compare/v1.0.1...v1.0.2) (2024-04-23)
+
+
+### Performance Improvements
+
+* **scenes:** remove event listeners before restart in Main ([9e739ff](https://github.com/remarkablegames/linkit/commit/9e739ff4739c2e40b0becd6920b2974938adb617))
+
 ## [1.0.1](https://github.com/remarkablegames/linkit/compare/v1.0.0...v1.0.1) (2024-04-22)
 
 
