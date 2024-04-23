@@ -51,7 +51,7 @@ export class Main extends Phaser.Scene {
               return;
             }
 
-            line.setData('end', circle);
+            line.end = circle;
             line.setTo(
               this.getCirclePosition('x', start),
               this.getCirclePosition('y', start),
@@ -87,7 +87,7 @@ export class Main extends Phaser.Scene {
 
             // start line when clicked on circle
             line = new Line(this, circle.color);
-            line.setData('start', circle);
+            line.start = circle;
 
             start = circle;
             start.setScale(1.5);
@@ -226,12 +226,12 @@ export class Main extends Phaser.Scene {
   private removeLine(line: Line) {
     Line.getGroup(this).remove(line);
 
-    ['start', 'end'].forEach((key) => {
-      const circle = line.getData(key);
+    (['start', 'end'] as const).forEach((key) => {
+      const circle = line[key];
       if (circle) {
         circle.setData('line');
       }
-      line.setData(key);
+      line[key] = undefined;
     });
 
     line.destroy();

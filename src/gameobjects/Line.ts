@@ -1,5 +1,7 @@
 import Phaser from 'phaser';
 
+import type { Circle } from './Circle';
+
 const LINE_GROUP = 'LINE_GROUP';
 const x = 0;
 const y = 0;
@@ -9,6 +11,9 @@ const x2 = 0;
 const y2 = 0;
 
 export class Line extends Phaser.GameObjects.Line {
+  start?: Circle;
+  end?: Circle;
+
   constructor(scene: Phaser.Scene, color: number) {
     super(scene, x, y, x1, y1, x2, y2, color);
     scene.add.existing(this);
