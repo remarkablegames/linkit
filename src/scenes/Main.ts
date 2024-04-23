@@ -31,91 +31,99 @@ export class Main extends Phaser.Scene {
     this.renderCircles();
     Line.setGroup(this);
 
-    this.input.on(
-      'pointerdown',
-      (_pointer: Phaser.Input.Pointer, currentlyOver: Circle[]) => {
-        const circle = currentlyOver[0];
-
-        if (circle) {
-          // end line when clicked on circle
-          if (this.start?.line) {
-            // remove line when clicked on wrong color or circle with existing line
-            if (this.start.color !== circle.color || circle.line) {
-              this.start.setScale(1);
-              this.start.line.remove();
-              this.playSound(key.audio.drop);
-              delete this.start;
-              return;
-            }
-
-            this.start.line.end = circle;
-            this.start.line.setTo(
-              this.start.absoluteX,
-              this.start.absoluteY,
-              circle.absoluteX,
-              circle.absoluteY,
-            );
-
-            this.start.line.position = {
-              x1: this.start.absoluteX,
-              y1: this.start.absoluteY,
-              x2: circle.absoluteX,
-              y2: circle.absoluteY,
-            };
-
-            circle.line = this.start.line;
-            this.playSound(key.audio.click);
-
-            if (this.checkSolution()) {
-              this.playSound(key.audio.success);
-              delete this.start;
-              this.scene.restart({ levelNumber: this.levelNumber + 1 });
-              return;
-            }
-
-            this.start.setScale(1);
-            delete this.start;
-            // no starting line
-          } else {
-            // recreate line if exists on circle
-            let line = circle.line;
-            if (line) {
-              line.remove();
-            }
-
-            // start line when clicked on circle
-            line = new Line(this, circle.color);
-            line.start = circle;
-
-            this.start = circle;
-            this.start.setScale(1.5);
-            this.start.line = line;
-
-            this.playSound(key.audio.click);
-          }
-        } else if (this.start) {
-          // remove line when clicked outside
-          this.start.line?.remove();
-          this.playSound(key.audio.drop);
-
-          this.start.setScale(1);
-          delete this.start;
-        }
-      },
-    );
-
+    this.input.on('pointerdown', this.pointerdown, this);
     if (this.game.device.os.desktop) {
-      this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
-        if (this.start?.line) {
-          this.start.line.setTo(
-            this.start.absoluteX,
-            this.start.absoluteY,
-            pointer.x,
-            pointer.y,
-          );
-        }
-      });
+      this.input.on('pointermove', this.pointermove, this);
     }
+  }
+
+  /**
+   * Handles mouse pointerdown event.
+   */
+  private pointerdown(_pointer: Phaser.Input.Pointer, currentlyOver: Circle[]) {
+    const circle = currentlyOver[0];
+
+    if (circle) {
+      // end line when clicked on circle
+      if (this.start?.line) {
+        // remove line when clicked on wrong color or circle with existing line
+        if (this.start.color !== circle.color || circle.line) {
+          this.start.setScale(1);
+          this.start.line.remove();
+          this.playSound(key.audio.drop);
+          delete this.start;
+          return;
+        }
+
+        this.start.line.end = circle;
+        this.start.line.setTo(
+          this.start.absoluteX,
+          this.start.absoluteY,
+          circle.absoluteX,
+          circle.absoluteY,
+        );
+
+        this.start.line.position = {
+          x1: this.start.absoluteX,
+          y1: this.start.absoluteY,
+          x2: circle.absoluteX,
+          y2: circle.absoluteY,
+        };
+
+        circle.line = this.start.line;
+        this.playSound(key.audio.click);
+
+        if (this.checkSolution()) {
+          this.playSound(key.audio.success);
+          delete this.start;
+          this.scene.restart({ levelNumber: this.levelNumber + 1 });
+          return;
+        }
+
+        this.start.setScale(1);
+        delete this.start;
+        // no starting line
+      } else {
+        // recreate line if exists on circle
+        let line = circle.line;
+        if (line) {
+          line.remove();
+        }
+
+        // start line when clicked on circle
+        line = new Line(this, circle.color);
+        line.start = circle;
+
+        this.start = circle;
+        this.start.setScale(1.5);
+        this.start.line = line;
+
+        this.playSound(key.audio.click);
+      }
+    } else if (this.start) {
+      // remove line when clicked outside
+      this.start.line?.remove();
+      this.playSound(key.audio.drop);
+
+      this.start.setScale(1);
+      delete this.start;
+    }
+  }
+
+  /**
+   * Handles mouse pointermove event.
+   */
+  private pointermove(pointer: Phaser.Input.Pointer) {
+    if (!this.start?.line) {
+      return;
+    }
+
+    this.start.line.setTo(
+      this.start.absoluteX,
+      this.start.absoluteY,
+      pointer.x,
+      pointer.y,
+    );
   }
 
   /**
