@@ -6,8 +6,9 @@ import { getBackgroundColor, getPairs } from '../helpers';
 import { getLevel, type Level } from '../levels';
 
 export class Main extends Phaser.Scene {
-  levelNumber = 0;
-  level!: Level;
+  private levelNumber = 0;
+  private level!: Level;
+  private start?: Circle;
 
   constructor() {
     super(key.scene.main);
@@ -30,8 +31,6 @@ export class Main extends Phaser.Scene {
     this.renderCircles();
     Line.setGroup(this);
 
-    let start: Circle | null = null;
-
     this.input.on(
       'pointerdown',
       (_pointer: Phaser.Input.Pointer, currentlyOver: Circle[]) => {
@@ -39,42 +38,43 @@ export class Main extends Phaser.Scene {
 
         if (circle) {
           // end line when clicked on circle
-          if (start?.line) {
+          if (this.start?.line) {
             // remove line when clicked on wrong color or circle with existing line
-            if (start.color !== circle.color || circle.line) {
-              start.setScale(1);
-              this.removeLine(start.line);
+            if (this.start.color !== circle.color || circle.line) {
+              this.start.setScale(1);
+              this.removeLine(this.start.line);
               this.playSound(key.audio.drop);
-              start = null;
+              delete this.start;
               return;
             }
 
-            start.line.end = circle;
-            start.line.setTo(
-              this.getCirclePosition('x', start),
-              this.getCirclePosition('y', start),
+            this.start.line.end = circle;
+            this.start.line.setTo(
+              this.getCirclePosition('x', this.start),
+              this.getCirclePosition('y', this.start),
               this.getCirclePosition('x', circle),
               this.getCirclePosition('y', circle),
             );
 
-            start.line.position = {
-              x1: this.getCirclePosition('x', start),
-              y1: this.getCirclePosition('y', start),
+            this.start.line.position = {
+              x1: this.getCirclePosition('x', this.start),
+              y1: this.getCirclePosition('y', this.start),
               x2: this.getCirclePosition('x', circle),
               y2: this.getCirclePosition('y', circle),
             };
 
-            circle.line = start.line;
+            circle.line = this.start.line;
             this.playSound(key.audio.click);
 
             if (this.checkSolution()) {
               this.playSound(key.audio.success);
+              delete this.start;
               this.scene.restart({ levelNumber: this.levelNumber + 1 });
               return;
             }
 
-            start.setScale(1);
-            start = null;
+            this.start.setScale(1);
+            delete this.start;
             // no starting line
           } else {
             // recreate line if exists on circle
@@ -87,29 +87,29 @@ export class Main extends Phaser.Scene {
             line = new Line(this, circle.color);
             line.start = circle;
 
-            start = circle;
-            start.setScale(1.5);
-            start.line = line;
+            this.start = circle;
+            this.start.setScale(1.5);
+            this.start.line = line;
 
             this.playSound(key.audio.click);
           }
-        } else if (start) {
+        } else if (this.start) {
           // remove line when clicked outside
-          this.removeLine(start.line);
+          this.removeLine(this.start.line);
           this.playSound(key.audio.drop);
 
-          start.setScale(1);
-          start = null;
+          this.start.setScale(1);
+          delete this.start;
         }
       },
     );
 
     if (this.game.device.os.desktop) {
       this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
-        if (start?.line) {
-          start.line.setTo(
-            this.getCirclePosition('x', start),
-            this.getCirclePosition('y', start),
+        if (this.start?.line) {
+          this.start.line.setTo(
+            this.getCirclePosition('x', this.start),
+            this.getCirclePosition('y', this.start),
             pointer.x,
             pointer.y,
           );
@@ -219,9 +219,9 @@ export class Main extends Phaser.Scene {
     (['start', 'end'] as const).forEach((key) => {
       const circle = line[key];
       if (circle) {
-        circle.line = undefined;
+        delete circle.line;
       }
-      line[key] = undefined;
+      delete line[key];
     });
 
     line.destroy();
