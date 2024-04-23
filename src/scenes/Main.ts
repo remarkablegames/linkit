@@ -37,6 +37,11 @@ export class Main extends Phaser.Scene {
     }
   }
 
+  private destroy() {
+    this.input.off('pointerdown');
+    this.input.off('pointermove');
+  }
+
   /**
    * Handles mouse pointerdown event.
    */
@@ -76,6 +81,7 @@ export class Main extends Phaser.Scene {
         if (this.checkSolution()) {
           this.playSound(key.audio.success);
           delete this.start;
+          this.destroy();
           this.scene.restart({ levelNumber: this.levelNumber + 1 });
           return;
         }
