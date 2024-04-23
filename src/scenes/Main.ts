@@ -59,12 +59,12 @@ export class Main extends Phaser.Scene {
               this.getCirclePosition('y', circle),
             );
 
-            line.setData('position', {
+            line.position = {
               x1: this.getCirclePosition('x', start),
               y1: this.getCirclePosition('y', start),
               x2: this.getCirclePosition('x', circle),
               y2: this.getCirclePosition('y', circle),
-            });
+            };
 
             circle.setData('line', line);
             this.playSound(key.audio.click);
@@ -272,21 +272,21 @@ export class Main extends Phaser.Scene {
         return false;
       }
 
-      const position1 = lines[0].getData('position');
-      const position2 = lines[1].getData('position');
+      const position1 = lines[0].position;
+      const position2 = lines[1].position;
 
       const line1 = new Phaser.Geom.Line(
-        position1.x1,
-        position1.y1,
-        position1.x2,
-        position1.y2,
+        position1?.x1,
+        position1?.y1,
+        position1?.x2,
+        position1?.y2,
       );
 
       const line2 = new Phaser.Geom.Line(
-        position2.x1,
-        position2.y1,
-        position2.x2,
-        position2.y2,
+        position2?.x1,
+        position2?.y1,
+        position2?.x2,
+        position2?.y2,
       );
 
       return Phaser.Geom.Intersects.LineToLine(line1, line2);
