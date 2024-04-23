@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 
 import { key } from '../constants';
 import { Circle, Line } from '../gameobjects';
-import { getBackgroundColor, getPairs } from '../helpers';
+import { areLinesIntersecting, getBackgroundColor } from '../helpers';
 import { getLevel, type Level } from '../levels';
 
 export class Main extends Phaser.Scene {
@@ -208,7 +208,9 @@ export class Main extends Phaser.Scene {
    * @returns - If puzzle is solved.
    */
   private checkSolution(): boolean {
-    if (this.areLinesIntersecting()) {
+    if (areLinesIntersecting(Line.getGroup(this).getChildren() as Line[])) {
+      this.playSound(key.audio.error);
+      alert('Lines must not intersect.');
       return false;
     }
 
@@ -222,46 +224,5 @@ export class Main extends Phaser.Scene {
     }
 
     return true;
-  }
-
-  /**
-   * Checks if lines are intersecting.
-   *
-   * @returns - If lines are intersecting.
-   */
-  private areLinesIntersecting(): boolean {
-    const lineIntersects = getPairs(
-      Line.getGroup(this).getChildren() as Line[],
-    ).some((lines) => {
-      if (lines.length < 2) {
-        return false;
-      }
-
-      const position1 = lines[0].position;
-      const position2 = lines[1].position;
-
-      const line1 = new Phaser.Geom.Line(
-        position1?.x1,
-        position1?.y1,
-        position1?.x2,
-        position1?.y2,
-      );
-
-      const line2 = new Phaser.Geom.Line(
-        position2?.x1,
-        position2?.y1,
-        position2?.x2,
-        position2?.y2,
-      );
-
-      return Phaser.Geom.Intersects.LineToLine(line1, line2);
-    });
-
-    if (lineIntersects) {
-      this.playSound(key.audio.error);
-      alert('Lines must not intersect.');
-    }
-
-    return lineIntersects;
   }
 }
