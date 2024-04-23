@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
 
 import { key } from '../constants';
+import { Circle, getCircleContainer, setCircleContainer } from '../gameobjects';
 import { getBackgroundColor, getPairs } from '../helpers';
 import { getLevel, type Level } from '../levels';
 
 export class Main extends Phaser.Scene {
-  circles!: Phaser.GameObjects.Container;
   levelNumber = 0;
   lines!: Phaser.GameObjects.Group;
   level!: Level;
@@ -31,14 +31,11 @@ export class Main extends Phaser.Scene {
     this.addCircles();
     this.lines = this.add.group();
 
-    let start: Phaser.GameObjects.Arc | null = null;
+    let start: Circle | null = null;
 
     this.input.on(
       'pointerdown',
-      (
-        _pointer: Phaser.Input.Pointer,
-        currentlyOver: Phaser.GameObjects.Arc[],
-      ) => {
+      (_pointer: Phaser.Input.Pointer, currentlyOver: Circle[]) => {
         const circle = currentlyOver[0];
 
         if (circle) {
@@ -47,10 +44,7 @@ export class Main extends Phaser.Scene {
             const line = this.getLine(start);
 
             // remove line when clicked on wrong color or circle with existing line
-            if (
-              start.getData('color') !== circle.getData('color') ||
-              circle.getData('line')
-            ) {
+            if (start.color !== circle.color || circle.getData('line')) {
               start.setScale(1);
               start = null;
               this.removeLine(line);
@@ -94,7 +88,7 @@ export class Main extends Phaser.Scene {
 
             // start line when clicked on circle
             line = this.add
-              .line(0, 0, 0, 0, 0, 0, circle.getData('color'))
+              .line(0, 0, 0, 0, 0, 0, circle.color)
               .setLineWidth(2)
               .setData('start', circle);
             this.lines.add(line);
@@ -174,32 +168,20 @@ export class Main extends Phaser.Scene {
    * Adds circles.
    */
   private addCircles() {
-    this.circles = this.add.container();
+    setCircleContainer(this);
 
     this.level.puzzle.forEach((rows) => {
-      rows.forEach((color) => {
-        const isColor = color > -1;
-
-        const circle = this.add
-          .circle(0, 0, 16, color)
-          .setOrigin(0.5)
-          .setInteractive({
-            useHandCursor: true,
-          })
-          .setData('color', color)
-          .setActive(isColor)
-          .setVisible(isColor);
-
-        this.circles.add(circle);
-      });
+      rows.forEach((color) => new Circle(this, color));
     });
 
-    Phaser.Actions.GridAlign(this.circles.getAll(), this.getGridOptions());
+    const container = getCircleContainer(this);
+    Phaser.Actions.GridAlign(container.getAll(), this.getGridOptions());
 
     const { centerX, centerY } = this.cameras.main;
-    const { height, width } = this.circles.getBounds();
-    this.circles.setX(centerX - width / 2);
-    this.circles.setY(centerY - height / 2);
+    const { height, width } = container.getBounds();
+
+    container.setX(centerX - width / 2);
+    container.setY(centerY - height / 2);
   }
 
   /**
@@ -272,10 +254,10 @@ export class Main extends Phaser.Scene {
       return false;
     }
 
-    const circleMissingLine = this.circles
-      .getAll()
-      .filter((circle) => circle.active)
-      .some((circle) => !circle.getData('line'));
+    const circleMissingLine = getCircleContainer(this)
+      .getAll<Circle>()
+      .filter((circle: Circle) => circle.active)
+      .some((circle: Circle) => !circle.getData('line'));
 
     if (circleMissingLine) {
       return false;
