@@ -1,13 +1,12 @@
 import Phaser from 'phaser';
 
 import { key } from '../constants';
-import { Circle } from '../gameobjects';
+import { Circle, Line } from '../gameobjects';
 import { getBackgroundColor, getPairs } from '../helpers';
 import { getLevel, type Level } from '../levels';
 
 export class Main extends Phaser.Scene {
   levelNumber = 0;
-  lines!: Phaser.GameObjects.Group;
   level!: Level;
 
   constructor() {
@@ -28,8 +27,8 @@ export class Main extends Phaser.Scene {
   create() {
     this.setBackgroundColor();
     this.renderLevelTitle();
-    this.addCircles();
-    this.lines = this.add.group();
+    this.renderCircles();
+    Line.setGroup(this);
 
     let start: Circle | null = null;
 
@@ -87,11 +86,8 @@ export class Main extends Phaser.Scene {
             }
 
             // start line when clicked on circle
-            line = this.add
-              .line(0, 0, 0, 0, 0, 0, circle.color)
-              .setLineWidth(2)
-              .setData('start', circle);
-            this.lines.add(line);
+            line = new Line(this, circle.color);
+            line.setData('start', circle);
 
             start = circle;
             start.setScale(1.5);
@@ -167,7 +163,7 @@ export class Main extends Phaser.Scene {
   /**
    * Adds circles.
    */
-  private addCircles() {
+  private renderCircles() {
     Circle.setContainer(this);
 
     this.level.puzzle.forEach((rows) => {
@@ -208,10 +204,7 @@ export class Main extends Phaser.Scene {
    * @param circle - The circle.
    * @returns - The circle X or Y position.
    */
-  private getCirclePosition(
-    position: 'x' | 'y',
-    circle: Phaser.GameObjects.Arc,
-  ) {
+  private getCirclePosition(position: 'x' | 'y', circle: Circle) {
     return circle.parentContainer[position] + circle[position];
   }
 
@@ -221,7 +214,7 @@ export class Main extends Phaser.Scene {
    * @param circle - The circle.
    * @returns - The line.
    */
-  private getLine(circle: Phaser.GameObjects.Arc): Phaser.GameObjects.Line {
+  private getLine(circle: Circle): Line {
     return circle.getData('line');
   }
 
@@ -230,8 +223,8 @@ export class Main extends Phaser.Scene {
    *
    * @param line - The line.
    */
-  private removeLine(line: Phaser.GameObjects.Line) {
-    this.lines.remove(line);
+  private removeLine(line: Line) {
+    Line.getGroup(this).remove(line);
 
     ['start', 'end'].forEach((key) => {
       const circle = line.getData(key);
@@ -273,7 +266,7 @@ export class Main extends Phaser.Scene {
    */
   private areLinesIntersecting(): boolean {
     const lineIntersects = getPairs(
-      this.lines.getChildren() as Phaser.GameObjects.Line[],
+      Line.getGroup(this).getChildren() as Line[],
     ).some((lines) => {
       if (lines.length < 2) {
         return false;
