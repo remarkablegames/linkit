@@ -39,34 +39,32 @@ export class Main extends Phaser.Scene {
 
         if (circle) {
           // end line when clicked on circle
-          if (start) {
-            const line = this.getLine(start);
-
+          if (start?.line) {
             // remove line when clicked on wrong color or circle with existing line
-            if (start.color !== circle.color || circle.getData('line')) {
+            if (start.color !== circle.color || circle.line) {
               start.setScale(1);
-              start = null;
-              this.removeLine(line);
+              this.removeLine(start.line);
               this.playSound(key.audio.drop);
+              start = null;
               return;
             }
 
-            line.end = circle;
-            line.setTo(
+            start.line.end = circle;
+            start.line.setTo(
               this.getCirclePosition('x', start),
               this.getCirclePosition('y', start),
               this.getCirclePosition('x', circle),
               this.getCirclePosition('y', circle),
             );
 
-            line.position = {
+            start.line.position = {
               x1: this.getCirclePosition('x', start),
               y1: this.getCirclePosition('y', start),
               x2: this.getCirclePosition('x', circle),
               y2: this.getCirclePosition('y', circle),
             };
 
-            circle.setData('line', line);
+            circle.line = start.line;
             this.playSound(key.audio.click);
 
             if (this.checkSolution()) {
@@ -80,7 +78,7 @@ export class Main extends Phaser.Scene {
             // no starting line
           } else {
             // recreate line if exists on circle
-            let line = this.getLine(circle);
+            let line = circle.line;
             if (line) {
               this.removeLine(line);
             }
@@ -91,14 +89,13 @@ export class Main extends Phaser.Scene {
 
             start = circle;
             start.setScale(1.5);
-            start.setData('line', line);
+            start.line = line;
 
             this.playSound(key.audio.click);
           }
         } else if (start) {
           // remove line when clicked outside
-          const line = this.getLine(start);
-          this.removeLine(line);
+          this.removeLine(start.line);
           this.playSound(key.audio.drop);
 
           start.setScale(1);
@@ -109,9 +106,8 @@ export class Main extends Phaser.Scene {
 
     if (this.game.device.os.desktop) {
       this.input.on('pointermove', (pointer: Phaser.Input.Pointer) => {
-        if (start) {
-          const line = this.getLine(start);
-          line.setTo(
+        if (start?.line) {
+          start.line.setTo(
             this.getCirclePosition('x', start),
             this.getCirclePosition('y', start),
             pointer.x,
@@ -209,27 +205,21 @@ export class Main extends Phaser.Scene {
   }
 
   /**
-   * Gets line associated with circle.
-   *
-   * @param circle - The circle.
-   * @returns - The line.
-   */
-  private getLine(circle: Circle): Line {
-    return circle.getData('line');
-  }
-
-  /**
    * Deletes line and removes it from group.
    *
    * @param line - The line.
    */
-  private removeLine(line: Line) {
+  private removeLine(line?: Line) {
+    if (!line) {
+      return;
+    }
+
     Line.getGroup(this).remove(line);
 
     (['start', 'end'] as const).forEach((key) => {
       const circle = line[key];
       if (circle) {
-        circle.setData('line');
+        circle.line = undefined;
       }
       line[key] = undefined;
     });
@@ -250,7 +240,7 @@ export class Main extends Phaser.Scene {
     const circleMissingLine = Circle.getContainer(this)
       .getAll<Circle>()
       .filter((circle: Circle) => circle.active)
-      .some((circle: Circle) => !circle.getData('line'));
+      .some((circle: Circle) => !circle.line);
 
     if (circleMissingLine) {
       return false;
