@@ -42,7 +42,7 @@ export class Main extends Phaser.Scene {
             // remove line when clicked on wrong color or circle with existing line
             if (this.start.color !== circle.color || circle.line) {
               this.start.setScale(1);
-              this.removeLine(this.start.line);
+              this.start.line.remove();
               this.playSound(key.audio.drop);
               delete this.start;
               return;
@@ -80,7 +80,7 @@ export class Main extends Phaser.Scene {
             // recreate line if exists on circle
             let line = circle.line;
             if (line) {
-              this.removeLine(line);
+              line.remove();
             }
 
             // start line when clicked on circle
@@ -95,7 +95,7 @@ export class Main extends Phaser.Scene {
           }
         } else if (this.start) {
           // remove line when clicked outside
-          this.removeLine(this.start.line);
+          this.start.line?.remove();
           this.playSound(key.audio.drop);
 
           this.start.setScale(1);
@@ -192,29 +192,6 @@ export class Main extends Phaser.Scene {
       cellWidth,
       cellHeight,
     };
-  }
-
-  /**
-   * Deletes line and removes it from group.
-   *
-   * @param line - The line.
-   */
-  private removeLine(line?: Line) {
-    if (!line) {
-      return;
-    }
-
-    Line.getGroup(this).remove(line);
-
-    (['start', 'end'] as const).forEach((key) => {
-      const circle = line[key];
-      if (circle) {
-        delete circle.line;
-      }
-      delete line[key];
-    });
-
-    line.destroy();
   }
 
   /**

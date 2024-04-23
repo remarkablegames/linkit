@@ -29,6 +29,22 @@ export class Line extends Phaser.GameObjects.Line {
   }
 
   /**
+   * Destroys line and removes from group.
+   */
+  remove() {
+    Line.getGroup(this.scene).remove(this);
+
+    (['start', 'end'] as const).forEach((key) => {
+      const circle = this[key];
+      if (circle) {
+        delete circle.line;
+      }
+    });
+
+    this.destroy();
+  }
+
+  /**
    * Adds new line group to scene.
    *
    * @returns - Line group.
