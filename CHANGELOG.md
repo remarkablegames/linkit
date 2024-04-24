@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/remarkablegames/linkit/compare/v1.0.2...v1.1.0) (2024-04-24)
+
+
+### Features
+
+* **gameobjects:** add hover animation when input is over Circle ([b66560a](https://github.com/remarkablegames/linkit/commit/b66560ab004d444789e9a3dc58baa92643fa949f)), closes [#6](https://github.com/remarkablegames/linkit/issues/6)
+
 ## [1.0.2](https://github.com/remarkablegames/linkit/compare/v1.0.1...v1.0.2) (2024-04-23)
 
 
