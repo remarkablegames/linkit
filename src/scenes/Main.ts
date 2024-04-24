@@ -40,6 +40,10 @@ export class Main extends Phaser.Scene {
   private destroy() {
     this.input.off('pointerdown');
     this.input.off('pointermove');
+
+    Circle.getContainer(this)
+      .getAll<Circle>()
+      .forEach((circle) => circle.remove());
   }
 
   /**
@@ -101,7 +105,7 @@ export class Main extends Phaser.Scene {
         line.start = circle;
 
         this.start = circle;
-        this.start.setScale(1.5);
+        this.start.setScale(1.25);
         this.start.line = line;
 
         this.playSound(key.audio.click);
@@ -222,8 +226,8 @@ export class Main extends Phaser.Scene {
 
     const circleMissingLine = Circle.getContainer(this)
       .getAll<Circle>()
-      .filter((circle: Circle) => circle.active)
-      .some((circle: Circle) => !circle.line);
+      .filter((circle) => circle.active)
+      .some((circle) => !circle.line);
 
     if (circleMissingLine) {
       return false;

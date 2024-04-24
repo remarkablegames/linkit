@@ -30,6 +30,21 @@ export class Circle extends Phaser.GameObjects.Arc {
       .setVisible(hasColor);
 
     Circle.getContainer(scene).add(this);
+
+    if (this.scene.game.device.os.desktop) {
+      this.on('pointerover', () => {
+        this.setScale(1.25);
+      });
+
+      this.on('pointerout', () => {
+        this.setScale(1);
+      });
+    }
+  }
+
+  remove() {
+    this.off('pointerover');
+    this.off('pointerout');
   }
 
   /**
