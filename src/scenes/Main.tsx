@@ -21,8 +21,7 @@ export class Main extends Phaser.Scene {
       this.currentLevel = data.currentLevel;
       this.level = level;
     } else {
-      this.currentLevel = 0;
-      this.level = getLevel(0);
+      this.scene.start(key.scene.end);
     }
   }
 

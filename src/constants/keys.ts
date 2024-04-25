@@ -7,6 +7,7 @@ const audio = {
 
 const scene = {
   boot: 'boot',
+  end: 'end',
   main: 'main',
 } as const;
 
