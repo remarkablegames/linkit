@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/remarkablegames/linkit/compare/v1.2.1...v1.3.0) (2024-04-25)
+
+
+### Features
+
+* **intro:** simplify code and add check ([5c15167](https://github.com/remarkablegames/linkit/commit/5c151675e7497bd93ea55c33eb341dc42d1e9d4d))
+* **scenes:** play sound on button press in Intro and End ([cf6f988](https://github.com/remarkablegames/linkit/commit/cf6f988abcc8725986604a4b4ee1a4c3ac13cf27))
+
 ## [1.2.1](https://github.com/remarkablegames/linkit/compare/v1.2.0...v1.2.1) (2024-04-25)
 
 
