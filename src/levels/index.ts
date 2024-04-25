@@ -1,7 +1,21 @@
-import { type Level, levels } from './levels';
+import { levels } from './levels';
 
-export type { Level };
+export interface Level {
+  level: number;
+  cellWidth: number;
+  cellHeight: number;
+  puzzle: number[][];
+}
 
-export function getLevel(level: number): Level {
-  return levels[level];
+export function getLevel(level: number): Level | undefined {
+  const currentLevel = levels[level];
+
+  if (!currentLevel) {
+    return undefined;
+  }
+
+  return {
+    ...currentLevel,
+    level,
+  };
 }

@@ -1,12 +1,7 @@
 import { _, B, G, K, L, M, N, O, P, R, S, V } from '../constants';
+import type { Level } from './index';
 
-export interface Level {
-  cellWidth: number;
-  cellHeight: number;
-  puzzle: number[][];
-}
-
-export const levels: Level[] = [
+export const levels: Omit<Level, 'level'>[] = [
   // 0
   {
     cellWidth: 200,

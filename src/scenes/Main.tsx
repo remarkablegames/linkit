@@ -11,7 +11,6 @@ import {
 import { getLevel, type Level } from '../levels';
 
 export class Main extends Phaser.Scene {
-  private currentLevel = 0;
   private level!: Level;
   private start?: Circle;
 
@@ -19,10 +18,10 @@ export class Main extends Phaser.Scene {
     super(key.scene.main);
   }
 
-  init(data: { currentLevel: number }) {
-    const level = getLevel(data.currentLevel);
+  init(data: Pick<Level, 'level'>) {
+    const level = getLevel(data.level);
+
     if (level) {
-      this.currentLevel = data.currentLevel;
       this.level = level;
     } else {
       this.scene.start(key.scene.end);
@@ -86,7 +85,10 @@ export class Main extends Phaser.Scene {
           playSound(key.audio.success, this);
           delete this.start;
           this.destroy();
-          this.scene.restart({ currentLevel: this.currentLevel + 1 });
+          const data: Pick<Level, 'level'> = {
+            level: this.level.level + 1,
+          };
+          this.scene.restart(data);
           return;
         }
 
@@ -151,7 +153,7 @@ export class Main extends Phaser.Scene {
   private renderLevelTitle() {
     render(
       <Text
-        text={this.currentLevel === 0 ? 'Linkit' : String(this.currentLevel)}
+        text={String(this.level.level)}
         x={this.cameras.main.centerX}
         y={32}
         style={{

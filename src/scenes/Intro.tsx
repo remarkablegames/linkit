@@ -4,6 +4,7 @@ import { render, Text } from 'phaser-jsx';
 import { Button } from '../components';
 import { key } from '../constants';
 import { playSound } from '../helpers';
+import type { Level } from '../levels';
 
 export class Intro extends Phaser.Scene {
   constructor() {
@@ -27,7 +28,7 @@ export class Intro extends Phaser.Scene {
           originY={0.5}
         />
 
-        <Button x={centerX} y={centerY} onClick={this.startGame}>
+        <Button x={centerX} y={centerY + 100} onClick={this.startGame}>
           Start
         </Button>
       </>,
@@ -37,8 +38,7 @@ export class Intro extends Phaser.Scene {
 
   private startGame() {
     playSound(key.audio.success, this);
-    this.scene.start(key.scene.main, {
-      currentLevel: 0,
-    });
+    const data: Pick<Level, 'level'> = { level: 0 };
+    this.scene.start(key.scene.main, data);
   }
 }
