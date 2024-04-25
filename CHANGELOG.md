@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0](https://github.com/remarkablegames/linkit/compare/v1.1.0...v1.2.0) (2024-04-25)
+
+
+### Features
+
+* **scenes:** add End ([2bbd6bc](https://github.com/remarkablegames/linkit/commit/2bbd6bc8cdc91c51bd22e3bd6d4d4e49ec9f7a6c))
+* **scenes:** display text "You Win!" in End ([7e19a6b](https://github.com/remarkablegames/linkit/commit/7e19a6b1459b2fabc3966e05dca5939d40aaa527))
+* **scenes:** show confetti in End ([8ff5ac3](https://github.com/remarkablegames/linkit/commit/8ff5ac32417778af6482ac4b71ac28e8313cc484))
+
 ## [1.1.0](https://github.com/remarkablegames/linkit/compare/v1.0.2...v1.1.0) (2024-04-24)
 
 
