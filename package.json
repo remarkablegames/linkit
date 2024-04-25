@@ -7,6 +7,7 @@
     "build": "npm run clean && vite build",
     "bundle": "scripts/bundle.sh",
     "clean": "rm -rf dist",
+    "generate-level": "node --loader ts-node/esm scripts/generate-level.mts",
     "lint": "eslint --ignore-path .gitignore .",
     "lint:fix": "npm run lint -- --fix",
     "lint:tsc": "tsc --noEmit",

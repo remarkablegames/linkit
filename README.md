@@ -86,6 +86,47 @@ Builds the game and packages it into a Zip file in the `dist` folder.
 
 Your game can be uploaded to your server, [Itch.io](https://itch.io/), [Newgrounds](https://www.newgrounds.com/), etc.
 
+### `npm run generate-level`
+
+Randomly generates a level.
+
+> [!NOTE]
+> Make sure to playtest the level by appending `?level=<number>` to the URL.
+
+#### Examples
+
+2x2 grid that is filled 100% with 1 color:
+
+```sh
+npm run generate-level -- --columns=2 --rows=2 --colors=1 --fill=1
+```
+
+Output:
+
+```js
+[
+  [M, M],
+  [M, M],
+];
+```
+
+4x4 grid that is filled 50% with 2 colors:
+
+```sh
+npm run generate-level -- --columns=4 --rows=4 --colors=2 --fill=.5
+```
+
+Output:
+
+```js
+[
+  [_, _, M, M],
+  [_, Y, M, Y],
+  [M, _, _, _],
+  [Y, _, M, _],
+];
+```
+
 ## License
 
 [MIT](LICENSE)
