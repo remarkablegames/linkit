@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
 import { key } from '../constants';
+import { search } from '../helpers';
 
 export class Boot extends Phaser.Scene {
   constructor() {
@@ -30,6 +31,11 @@ export class Boot extends Phaser.Scene {
   }
 
   create() {
-    this.scene.start(key.scene.intro);
+    const currentLevel = Number(search.get('level'));
+    if (currentLevel) {
+      this.scene.start(key.scene.main, { currentLevel });
+    } else {
+      this.scene.start(key.scene.intro);
+    }
   }
 }

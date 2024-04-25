@@ -10,16 +10,14 @@ export class Intro extends Phaser.Scene {
   }
 
   create() {
-    const { width, height } = this.scale;
-    const titleY = height / 2 - 100;
-    const buttonY = height / 2 + 100;
+    const { centerX, centerY } = this.cameras.main;
 
     render(
       <>
         <Text
           text="Linkit"
-          x={width / 2}
-          y={titleY}
+          x={centerX}
+          y={centerY - 100}
           style={{
             color: 'black',
             fontSize: '48px',
@@ -27,7 +25,7 @@ export class Intro extends Phaser.Scene {
           originX={0.5}
           originY={0.5}
         />
-        <Button x={width / 2} y={buttonY} onClick={this.startGame.bind(this)}>
+        <Button x={centerX} y={centerY} onClick={this.startGame}>
           Start
         </Button>
       </>,
@@ -35,7 +33,7 @@ export class Intro extends Phaser.Scene {
     );
   }
 
-  startGame() {
+  private startGame() {
     this.scene.start(key.scene.main, {
       currentLevel: 0,
     });
