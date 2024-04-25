@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/remarkablegames/linkit/compare/v1.2.0...v1.2.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* **levels:** fix level 7 ([1c68ae8](https://github.com/remarkablegames/linkit/commit/1c68ae8aae774b62520248460c4fc2842fed844e))
+
 ## [1.2.0](https://github.com/remarkablegames/linkit/compare/v1.1.0...v1.2.0) (2024-04-25)
 
 
