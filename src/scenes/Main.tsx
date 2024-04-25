@@ -163,7 +163,7 @@ export class Main extends Phaser.Scene {
         x={this.cameras.main.centerX}
         y={32}
         style={{
-          color: '#000000',
+          color: 'black',
           fontSize: '36px',
         }}
         originX={0.5}
