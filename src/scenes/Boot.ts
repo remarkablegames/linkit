@@ -32,7 +32,7 @@ export class Boot extends Phaser.Scene {
 
   create() {
     this.scene.start(key.scene.main, {
-      levelNumber: Number(search.get('level')) || 0,
+      currentLevel: Number(search.get('level')) || 0,
     });
   }
 }

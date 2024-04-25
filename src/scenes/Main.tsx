@@ -7,7 +7,7 @@ import { areLinesIntersecting, getBackgroundColor } from '../helpers';
 import { getLevel, type Level } from '../levels';
 
 export class Main extends Phaser.Scene {
-  private levelNumber = 0;
+  private currentLevel = 0;
   private level!: Level;
   private start?: Circle;
 
@@ -15,13 +15,13 @@ export class Main extends Phaser.Scene {
     super(key.scene.main);
   }
 
-  init(data: { levelNumber: number }) {
-    const level = getLevel(data.levelNumber);
+  init(data: { currentLevel: number }) {
+    const level = getLevel(data.currentLevel);
     if (level) {
-      this.levelNumber = data.levelNumber;
+      this.currentLevel = data.currentLevel;
       this.level = level;
     } else {
-      this.levelNumber = 0;
+      this.currentLevel = 0;
       this.level = getLevel(0);
     }
   }
@@ -83,7 +83,7 @@ export class Main extends Phaser.Scene {
           this.playSound(key.audio.success);
           delete this.start;
           this.destroy();
-          this.scene.restart({ levelNumber: this.levelNumber + 1 });
+          this.scene.restart({ currentLevel: this.currentLevel + 1 });
           return;
         }
 
@@ -160,7 +160,7 @@ export class Main extends Phaser.Scene {
   private renderLevelTitle() {
     render(
       <Text
-        text={this.levelNumber === 0 ? 'Linkit' : String(this.levelNumber)}
+        text={this.currentLevel === 0 ? 'Linkit' : String(this.currentLevel)}
         x={this.cameras.main.centerX}
         y={32}
         style={{
