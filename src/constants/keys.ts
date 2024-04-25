@@ -9,6 +9,7 @@ const scene = {
   boot: 'boot',
   end: 'end',
   main: 'main',
+  intro: 'intro',
 } as const;
 
 export const key = {
