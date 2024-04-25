@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/remarkablegames/linkit/compare/v1.3.0...v1.3.1) (2024-04-25)
+
+
+### Bug Fixes
+
+* **audio:** add mp3 fallback ([0b78d75](https://github.com/remarkablegames/linkit/commit/0b78d753770342d12ec75b1148aa79fddb2e8d62))
+
 ## [1.3.0](https://github.com/remarkablegames/linkit/compare/v1.2.1...v1.3.0) (2024-04-25)
 
 
