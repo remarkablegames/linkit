@@ -3,6 +3,7 @@ import { render, Text } from 'phaser-jsx';
 
 import { Button } from '../components';
 import { key } from '../constants';
+import { playSound } from '../helpers';
 
 export class Intro extends Phaser.Scene {
   constructor() {
@@ -35,6 +36,7 @@ export class Intro extends Phaser.Scene {
   }
 
   private startGame() {
+    playSound(key.audio.success, this);
     this.scene.start(key.scene.main, {
       currentLevel: 0,
     });

@@ -4,6 +4,7 @@ import { render, Text } from 'phaser-jsx';
 
 import { Button } from '../components';
 import { key } from '../constants';
+import { playSound } from '../helpers';
 
 export class End extends Phaser.Scene {
   constructor() {
@@ -38,6 +39,7 @@ export class End extends Phaser.Scene {
   }
 
   private restart() {
+    playSound(key.audio.success, this);
     this.scene.start(key.scene.main, {
       currentLevel: 0,
     });
