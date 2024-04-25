@@ -1,3 +1,4 @@
+import { confetti } from '@tsparticles/confetti';
 import Phaser from 'phaser';
 import { render } from 'phaser-jsx';
 
@@ -18,6 +19,8 @@ export class End extends Phaser.Scene {
       </Button>,
       this,
     );
+
+    confetti('confetti');
   }
 
   private restart() {
