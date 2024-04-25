@@ -25,6 +25,7 @@ export class Intro extends Phaser.Scene {
           originX={0.5}
           originY={0.5}
         />
+
         <Button x={centerX} y={centerY} onClick={this.startGame}>
           Start
         </Button>

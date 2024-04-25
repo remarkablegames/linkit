@@ -3,7 +3,11 @@ import { render, Text } from 'phaser-jsx';
 
 import { key } from '../constants';
 import { Circle, Line } from '../gameobjects';
-import { areLinesIntersecting, getBackgroundColor } from '../helpers';
+import {
+  areLinesIntersecting,
+  getBackgroundColor,
+  playSound,
+} from '../helpers';
 import { getLevel, type Level } from '../levels';
 
 export class Main extends Phaser.Scene {
@@ -55,7 +59,7 @@ export class Main extends Phaser.Scene {
         if (this.start.color !== circle.color || circle.line) {
           this.start.setScale(1);
           this.start.line.remove();
-          this.playSound(key.audio.drop);
+          playSound(key.audio.drop, this);
           delete this.start;
           return;
         }
@@ -76,10 +80,10 @@ export class Main extends Phaser.Scene {
         };
 
         circle.line = this.start.line;
-        this.playSound(key.audio.click);
+        playSound(key.audio.click, this);
 
         if (this.checkSolution()) {
-          this.playSound(key.audio.success);
+          playSound(key.audio.success, this);
           delete this.start;
           this.destroy();
           this.scene.restart({ currentLevel: this.currentLevel + 1 });
@@ -104,12 +108,12 @@ export class Main extends Phaser.Scene {
         this.start.setScale(1.5);
         this.start.line = line;
 
-        this.playSound(key.audio.click);
+        playSound(key.audio.click, this);
       }
     } else if (this.start) {
       // remove line when clicked outside
       this.start.line?.remove();
-      this.playSound(key.audio.drop);
+      playSound(key.audio.drop, this);
 
       this.start.setScale(1);
       delete this.start;
@@ -130,18 +134,6 @@ export class Main extends Phaser.Scene {
       pointer.x,
       pointer.y,
     );
-  }
-
-  /**
-   * Plays sound.
-   */
-  private playSound(key: string) {
-    try {
-      this.sound.play(key);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
   }
 
   /**
@@ -218,7 +210,7 @@ export class Main extends Phaser.Scene {
    */
   private checkSolution(): boolean {
     if (areLinesIntersecting(Line.getGroup(this).getChildren() as Line[])) {
-      this.playSound(key.audio.error);
+      playSound(key.audio.error, this);
       alert('Lines must not intersect.');
       return false;
     }
