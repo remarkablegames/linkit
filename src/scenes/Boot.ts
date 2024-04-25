@@ -10,25 +10,25 @@ export class Boot extends Phaser.Scene {
   }
 
   preload() {
-    this.load.audio(
-      key.audio.click,
+    this.load.audio(key.audio.click, [
       new URL('../audio/drop_004.ogg', import.meta.url).href,
-    );
+      new URL('../audio/drop_004.mp3', import.meta.url).href,
+    ]);
 
-    this.load.audio(
-      key.audio.drop,
+    this.load.audio(key.audio.drop, [
       new URL('../audio/drop_002.ogg', import.meta.url).href,
-    );
+      new URL('../audio/drop_002.mp3', import.meta.url).href,
+    ]);
 
-    this.load.audio(
-      key.audio.error,
+    this.load.audio(key.audio.error, [
       new URL('../audio/back_001.ogg', import.meta.url).href,
-    );
+      new URL('../audio/back_001.mp3', import.meta.url).href,
+    ]);
 
-    this.load.audio(
-      key.audio.success,
+    this.load.audio(key.audio.success, [
       new URL('../audio/confirmation_004.ogg', import.meta.url).href,
-    );
+      new URL('../audio/confirmation_004.mp3', import.meta.url).href,
+    ]);
   }
 
   create() {
