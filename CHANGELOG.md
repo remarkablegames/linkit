@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/remarkablegames/linkit/compare/v1.3.1...v1.3.2) (2024-05-19)
+
+
+### Bug Fixes
+
+* **style:** update CSS reset and default background color to white ([c9fb7da](https://github.com/remarkablegames/linkit/commit/c9fb7da9f1a08f6c077fde6c780d2c8920216233))
+
 ## [1.3.1](https://github.com/remarkablegames/linkit/compare/v1.3.0...v1.3.1) (2024-04-25)
 
 
