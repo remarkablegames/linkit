@@ -15,6 +15,7 @@ Play the game on:
 
 - [remarkablegames](https://remarkablegames.org/linkit/)
 - [itch.io](https://remarkablegames.itch.io/linkit)
+- [Newgrounds](https://www.newgrounds.com/portal/view/930960)
 
 ## Credits
 
