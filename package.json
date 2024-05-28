@@ -36,7 +36,7 @@
     "prettier": "3.2.5",
     "ts-node": "10.9.2",
     "typescript": "5.4.5",
-    "vite": "5.2.11",
+    "vite": "5.2.12",
     "vite-plugin-html": "3.2.2",
     "yargs": "17.7.2"
   },
