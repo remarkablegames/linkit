@@ -8,7 +8,7 @@
     "bundle": "scripts/bundle.sh",
     "clean": "rm -rf dist",
     "generate-level": "node --loader ts-node/esm scripts/generate-level.mts",
-    "lint": "eslint --ignore-path .gitignore .",
+    "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "lint:tsc": "tsc --noEmit",
     "prepare": "husky",
@@ -24,6 +24,8 @@
   "devDependencies": {
     "@commitlint/cli": "19.4.0",
     "@commitlint/config-conventional": "19.2.2",
+    "@eslint/eslintrc": "3.1.0",
+    "@eslint/js": "9.9.0",
     "@types/gtag.js": "0.0.20",
     "@types/yargs": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "8.1.0",
