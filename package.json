@@ -18,7 +18,7 @@
   "homepage": "https://remarkablegames.org/linkit/",
   "dependencies": {
     "@tsparticles/confetti": "3.5.0",
-    "phaser": "3.85.1",
+    "phaser": "3.85.2",
     "phaser-jsx": "0.10.0"
   },
   "devDependencies": {
