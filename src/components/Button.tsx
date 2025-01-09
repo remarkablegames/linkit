@@ -15,16 +15,16 @@ enum Color {
 
 export function Button(props: Props) {
   const { children, onClick, ...textProps } = props;
-  const ref = createRef<Phaser.GameObjects.Text>();
+  const textRef = createRef<Phaser.GameObjects.Text>();
 
   function onMouseOver() {
-    const button = ref.current!;
+    const button = textRef.current!;
     button.setColor(Color.darkslategray);
     button.setBackgroundColor(Color.ivory);
   }
 
   function onMouseOut() {
-    const button = ref.current!;
+    const button = textRef.current!;
     button.setColor(Color.ivory);
     button.setBackgroundColor(Color.darkslategray);
   }
@@ -38,13 +38,12 @@ export function Button(props: Props) {
       onPointerOut={onMouseOut}
       originX={0.5}
       originY={0.5}
-      ref={ref}
+      ref={textRef}
       style={{
         color: Color.ivory,
         fontFamily: 'monospace',
         fontSize: '20px',
         backgroundColor: Color.darkslategray,
-        // @ts-expect-error padding
         padding: { x: 20, y: 10 },
       }}
       text={children}
