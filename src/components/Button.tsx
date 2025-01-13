@@ -1,5 +1,5 @@
 import type Phaser from 'phaser';
-import { createRef, Text } from 'phaser-jsx';
+import { Text, useRef } from 'phaser-jsx';
 
 interface Props {
   children: string;
@@ -15,7 +15,7 @@ enum Color {
 
 export function Button(props: Props) {
   const { children, onClick, ...textProps } = props;
-  const textRef = createRef<Phaser.GameObjects.Text>();
+  const textRef = useRef<Phaser.GameObjects.Text>();
 
   function onMouseOver() {
     const button = textRef.current!;
