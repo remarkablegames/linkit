@@ -38,7 +38,7 @@
     "lint-staged": "15.5.0",
     "prettier": "3.5.3",
     "ts-node": "10.9.2",
-    "typescript": "5.8.2",
+    "typescript": "5.8.3",
     "vite": "6.2.5",
     "vite-plugin-html": "3.2.2",
     "yargs": "17.7.2"
