@@ -41,7 +41,7 @@
     "typescript": "5.8.3",
     "vite": "6.3.5",
     "vite-plugin-html": "3.2.2",
-    "yargs": "17.7.2"
+    "yargs": "18.0.0"
   },
   "private": true,
   "license": "MIT"
