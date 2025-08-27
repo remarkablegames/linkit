@@ -19,7 +19,7 @@
   "dependencies": {
     "@tsparticles/confetti": "3.9.1",
     "phaser": "3.90.0",
-    "phaser-jsx": "0.13.6"
+    "phaser-jsx": "0.13.7"
   },
   "devDependencies": {
     "@commitlint/cli": "19.8.1",
