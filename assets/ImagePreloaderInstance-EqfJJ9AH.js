@@ -1,0 +1,1 @@
+var e=class{_container;_engine;constructor(e,t){this._engine=e,this._container=t}destroy(){this._engine.images?.delete(this._container)}};export{e as ImagePreloaderInstance};

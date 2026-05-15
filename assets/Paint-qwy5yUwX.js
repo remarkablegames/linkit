@@ -1,0 +1,1 @@
+import{f as e,l as t,nt as n,p as r}from"./index-DYFKR2bn.js";var i=class{color;fill;stroke;load(i){n(i)||(i.color!==void 0&&(this.color=r.create(this.color,i.color)),i.fill!==void 0&&(this.fill??=new e,this.fill.load(i.fill)),i.stroke!==void 0&&(this.stroke??=new t,this.stroke.load(i.stroke)))}};export{i as t};
