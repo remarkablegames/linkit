@@ -36,9 +36,9 @@ export class Intro extends Phaser.Scene {
     );
   }
 
-  private startGame() {
+  private startGame = () => {
     playSound(key.audio.success, this);
     const data: Pick<Level, 'level'> = { level: 0 };
     this.scene.start(key.scene.main, data);
-  }
+  };
 }

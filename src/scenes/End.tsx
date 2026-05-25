@@ -39,9 +39,9 @@ export class End extends Phaser.Scene {
     confetti('confetti');
   }
 
-  private restart() {
+  private restart = () => {
     playSound(key.audio.success, this);
     const data: Pick<Level, 'level'> = { level: 0 };
     this.scene.start(key.scene.main, data);
-  }
+  };
 }
