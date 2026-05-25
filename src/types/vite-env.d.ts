@@ -1,5 +1,9 @@
 /// <reference types="vite/client" />
 
+interface Window {
+  gtag: (...args: unknown[]) => void;
+}
+
 interface ImportMetaEnv {
   readonly DEV: boolean;
   readonly VITE_APP_HOMEPAGE: string;
