@@ -1,0 +1,1 @@
+import{J as e}from"./LogUtils-Dqw7BZOX.js";import{d as t,f as n,l as r}from"./index-BixXYJan.js";var i=class{color;fill;stroke;load(i){e(i)||(i.color!==void 0&&(this.color=n.create(this.color,i.color)),i.fill!==void 0&&(this.fill??=new t,this.fill.load(i.fill)),i.stroke!==void 0&&(this.stroke??=new r,this.stroke.load(i.stroke)))}};export{i as t};
