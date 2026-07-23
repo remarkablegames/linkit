@@ -1,0 +1,1 @@
+import{_ as e,d as t,f as n,l as r,m as i}from"./index-CQwLfOpa.js";var a=class extends e{color;fill;stroke;doLoad(e){e.color!==void 0&&(this.color=n.create(this.color,e.color)),i(this,`fill`,e.fill,()=>new t),i(this,`stroke`,e.stroke,()=>new r)}};export{a as t};
