@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.3 (2026-07-23)
+
+
+### Miscellaneous Chores
+
+* release 1.3.3 ([3b8c127](https://github.com/remarkablegames/linkit/commit/3b8c127d489470446a730639c8d3629bca04a22e))
+
 ## [1.3.3](https://github.com/remarkablegames/linkit/compare/v1.3.2...v1.3.3) (2025-06-25)
 
 ### Miscellaneous Chores
