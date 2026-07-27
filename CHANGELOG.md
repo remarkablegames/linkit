@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.4](https://github.com/remarkablegames/linkit/compare/v1.3.3...v1.3.4) (2026-07-27)
+
+### Build System
+
+- **vite:** code split phaser and phaser-jsx ([bf5c4cd](https://github.com/remarkablegames/linkit/commit/bf5c4cde29c4bf1ce31a37737b1b1f113cb1be45))
+
 ## [1.3.3](https://github.com/remarkablegames/linkit/compare/v1.3.2...v1.3.3) (2025-06-25)
 
 ### Miscellaneous Chores
