@@ -32,6 +32,13 @@ jobs:
       - name: Type check
         run: npm run lint:tsc
 
+      - name: Page test
+        uses: remarkablemark/page-test-action@v1
+        with:
+          url: http://localhost:5173
+          start: npm start
+          wait-on: http://localhost:5173
+
       - name: Set environment variables
         run: |
           echo "VITE_APP_HOMEPAGE=$(jq -r .homepage package.json)" >> $GITHUB_ENV
