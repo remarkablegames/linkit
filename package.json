@@ -34,7 +34,7 @@
     "eslint-plugin-simple-import-sort": "14.0.0",
     "husky": "9.1.7",
     "lint-staged": "17.5.1",
-    "prettier": "3.9.6",
+    "prettier": "3.9.8",
     "ts-node": "10.9.2",
     "typescript": "6.0.3",
     "vite": "8.3.0",
