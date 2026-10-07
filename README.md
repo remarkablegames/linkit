@@ -14,7 +14,7 @@ This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024)
 Play the game on:
 
 - [itch.io](https://remarkablegames.itch.io/linkit)
-- [newgrounds](https://www.newgrounds.com/portal/view/930960)
+- [Newgrounds](https://www.newgrounds.com/portal/view/930960)
 - [remarkablegames](https://remarkablegames.org/linkit/)
 
 ## Credits
@@ -26,7 +26,6 @@ Play the game on:
 ## Ideation
 
 - [Excalidraw](https://excalidraw.com/#json=kdRfqSm9UoL0cEQ8MPRNo,mMrxHx-OPwRogYySd-1PqQ)
-- [Replit](https://replit.com/@remarkablemark/Linkit)
 
 ## Prerequisites
 
@@ -85,7 +84,7 @@ Your game is ready to be deployed!
 
 Builds the game and packages it into a Zip file in the `dist` folder.
 
-Your game can be uploaded to your server, [Itch.io](https://itch.io/), [Newgrounds](https://www.newgrounds.com/), etc.
+Your game can be uploaded to your server, [itch.io](https://itch.io/), [Newgrounds](https://www.newgrounds.com/), etc.
 
 ### `npm run generate-level`
 
