@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/remarkablegames/linkit/master/public/screenshots/title.png" alt="Linkit" width="360">
+  <img src="public/cover.png" alt="Linkit" width="360">
 </p>
 
 # Linkit
