@@ -10,7 +10,7 @@
     "generate-level": "node --loader ts-node/esm scripts/generate-level.mts",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "lint:tsc": "tsc --noEmit",
+    "lint:tsc": "tsc",
     "prepare": "husky",
     "preview": "vite preview",
     "start": "vite --open"
@@ -26,7 +26,6 @@
     "@commitlint/config-conventional": "21.2.3",
     "@eslint/compat": "2.1.1",
     "@eslint/js": "10.0.1",
-    "@types/gtag.js": "0.0.20",
     "@types/yargs": "17.0.35",
     "typescript-eslint": "8.71.1",
     "eslint": "10.12.0",

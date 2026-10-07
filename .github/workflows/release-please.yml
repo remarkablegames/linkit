@@ -46,8 +46,6 @@ jobs:
 
       - name: Build
         run: npm run bundle
-        env:
-          VITE_GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
 
       - name: Setup butler
         uses: remarkablegames/setup-butler@v3
