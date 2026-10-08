@@ -1,11 +1,14 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
+# build bundle
 BUNDLE=true npm run build -- --base=./
 
-# zip file
+# compress directory into single archive
 if [[ $CI != 'true' ]]; then
-  zip -r "dist/$(npm pkg get name | tr -d \")-$(npm pkg get version | tr -d \").zip" dist
+  NAME=$(npm pkg get name | tr -d \")
+  VERSION=$(npm pkg get version | tr -d \")
+  zip -r "dist/$NAME-$VERSION.zip" dist
   echo
-  find dist -type f -depth 1 -name '*.zip'
+  find dist -type f -name '*.zip'
   open dist
 fi
