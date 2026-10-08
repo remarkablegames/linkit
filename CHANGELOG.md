@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.4.0](https://github.com/remarkablegames/linkit/compare/v1.3.4...v1.4.0) (2026-10-08)
+
+
+### Features
+
+* **components:** update Button hover animation and sound ([1780a63](https://github.com/remarkablegames/linkit/commit/1780a631132fc223f3a07a02a1935360ed221605))
+* **gameobjects:** play sound on Circle hover ([baa5573](https://github.com/remarkablegames/linkit/commit/baa55739953fde5e07616e36525a89fbd4cc6bd8))
+* **gameobjects:** replace alert with toast ([4706d1e](https://github.com/remarkablegames/linkit/commit/4706d1ecc0f6c6c18dec97afd3cdc29b4c6bc206))
+
 ## [1.3.4](https://github.com/remarkablegames/linkit/compare/v1.3.3...v1.3.4) (2026-07-27)
 
 ### Build System
