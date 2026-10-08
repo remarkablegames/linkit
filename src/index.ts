@@ -14,7 +14,7 @@ new Phaser.Game({
   ],
   transparent: true,
   scale: {
-    mode: window.innerWidth < 600 ? Phaser.Scale.FIT : Phaser.Scale.NONE,
+    mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
 });
