@@ -13,9 +13,22 @@ This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024)
 
 Play the game on:
 
+- [Wavedash](https://wavedash.com/games/linkit)
 - [itch.io](https://remarkablegames.itch.io/linkit)
 - [Newgrounds](https://www.newgrounds.com/portal/view/930960)
 - [remarkablegames](https://remarkablegames.org/linkit/)
+
+## How to Play
+
+1. Connect each pair of matching-colored dots by drawing a line between them
+2. Route the lines without crossing or intersecting one another
+3. Complete the puzzle by connecting every pair
+
+## Features
+
+- Color-matching connection puzzles
+- Grid-based levels that require route planning
+- Increasing difficulty through larger grids and more colored pairs
 
 ## Credits
 
