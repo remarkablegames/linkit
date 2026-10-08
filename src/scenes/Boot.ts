@@ -10,25 +10,15 @@ export class Boot extends Phaser.Scene {
   }
 
   preload() {
-    this.load.audio(key.audio.click, [
-      new URL('../audio/drop_004.ogg', import.meta.url).href,
-      new URL('../audio/drop_004.mp3', import.meta.url).href,
-    ]);
-
-    this.load.audio(key.audio.drop, [
-      new URL('../audio/drop_002.ogg', import.meta.url).href,
-      new URL('../audio/drop_002.mp3', import.meta.url).href,
-    ]);
-
-    this.load.audio(key.audio.error, [
-      new URL('../audio/back_001.ogg', import.meta.url).href,
-      new URL('../audio/back_001.mp3', import.meta.url).href,
-    ]);
-
-    this.load.audio(key.audio.success, [
-      new URL('../audio/confirmation_004.ogg', import.meta.url).href,
-      new URL('../audio/confirmation_004.mp3', import.meta.url).href,
-    ]);
+    [
+      [key.audio.click, 'drop_004'],
+      [key.audio.drop, 'drop_002'],
+      [key.audio.error, 'back_001'],
+      [key.audio.success, 'confirmation_004'],
+      [key.audio.tick, 'tick_001'],
+    ].forEach(([key, sound]) => {
+      this.load.audio(key, [`sounds/${sound}.ogg`, `sounds/${sound}.mp3`]);
+    });
   }
 
   create() {

@@ -3,6 +3,7 @@ const audio = {
   drop: 'drop',
   error: 'error',
   success: 'success',
+  tick: 'tick',
 };
 
 const scene = {
