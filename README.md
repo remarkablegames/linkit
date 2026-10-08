@@ -16,7 +16,6 @@ Play in your browser:
 - [Newgrounds](https://www.newgrounds.com/portal/view/930960)
 - [remarkablegames](https://remarkablegames.org/linkit/)
 
-
 Or download for desktop:
 
 - [Windows](https://github.com/remarkablegames/linkit/releases/latest/download/windows.zip)
