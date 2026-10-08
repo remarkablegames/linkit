@@ -9,14 +9,21 @@
 
 🔴 Linkit is a puzzle where you connect the dots.
 
-This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024), which the theme was `power`. Read the [blog post](https://remarkablegames.org/posts/linkit/).
-
-Play the game on:
+Play in your browser:
 
 - [Wavedash](https://wavedash.com/games/linkit)
 - [itch.io](https://remarkablegames.itch.io/linkit)
 - [Newgrounds](https://www.newgrounds.com/portal/view/930960)
 - [remarkablegames](https://remarkablegames.org/linkit/)
+
+
+Or download for desktop:
+
+- [Windows](https://github.com/remarkablegames/linkit/releases/latest/download/windows.zip)
+- [macOS](https://github.com/remarkablegames/linkit/releases/latest/download/macos.zip)
+- [Linux](https://github.com/remarkablegames/linkit/releases/latest/download/linux.zip)
+
+Read the [blog post](https://remarkablegames.org/posts/linkit/).
 
 ## How to Play
 
