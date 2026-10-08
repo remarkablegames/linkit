@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/remarkablegames/linkit/compare/v1.4.0...v1.4.1) (2026-10-08)
+
+
+### Bug Fixes
+
+* set Phaser's scale mode to `FIT` ([2a22812](https://github.com/remarkablegames/linkit/commit/2a228126a7ca0ac82598bde16e1fa11ade88c2ff))
+
 ## [1.4.0](https://github.com/remarkablegames/linkit/compare/v1.3.4...v1.4.0) (2026-10-08)
 
 

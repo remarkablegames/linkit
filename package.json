@@ -1,6 +1,6 @@
 {
   "name": "linkit",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Linkit is a puzzle where you connect the dots.",
   "author": "Mark <mark@remarkablemark.org>",
   "scripts": {
