@@ -1,5 +1,8 @@
 import type Phaser from 'phaser';
-import { Text, useRef } from 'phaser-jsx';
+import { Text, useScene } from 'phaser-jsx';
+
+import { key } from '../constants';
+import { playSound } from '../helpers';
 
 interface Props {
   children: string;
@@ -14,19 +17,16 @@ enum Color {
 }
 
 export function Button(props: Props) {
+  const scene = useScene();
   const { children, onClick, ...textProps } = props;
-  const textRef = useRef<Phaser.GameObjects.Text>();
 
-  function onMouseOver() {
-    const button = textRef.current!;
-    button.setColor(Color.darkslategray);
-    button.setBackgroundColor(Color.ivory);
+  function onMouseOver(_pointer: unknown, button: Phaser.GameObjects.Text) {
+    playSound(key.audio.tick, scene);
+    button.setScale(1.1);
   }
 
-  function onMouseOut() {
-    const button = textRef.current!;
-    button.setColor(Color.ivory);
-    button.setBackgroundColor(Color.darkslategray);
+  function onMouseOut(_pointer: unknown, button: Phaser.GameObjects.Text) {
+    button.setScale(1);
   }
 
   return (
@@ -38,7 +38,6 @@ export function Button(props: Props) {
       onPointerOut={onMouseOut}
       originX={0.5}
       originY={0.5}
-      ref={textRef}
       style={{
         color: Color.ivory,
         fontFamily: 'monospace',
