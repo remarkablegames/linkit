@@ -7,9 +7,9 @@
 [![release](https://img.shields.io/github/v/release/remarkablegames/linkit)](https://github.com/remarkablegames/linkit/releases)
 [![build](https://github.com/remarkablegames/linkit/actions/workflows/build.yml/badge.svg)](https://github.com/remarkablegames/linkit/actions/workflows/build.yml)
 
-🔴 Linkit is a puzzle where you connect the dots. Read the [blog post](https://remarkablegames.org/posts/linkit/).
+🔴 Linkit is a puzzle where you connect the dots.
 
-This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024), which the theme was `power`.
+This game was made for [Gamedev.js Jam 2024](https://itch.io/jam/gamedevjs-2024), which the theme was `power`. Read the [blog post](https://remarkablegames.org/posts/linkit/).
 
 Play the game on:
 
