@@ -23,7 +23,7 @@ export class End extends Phaser.Scene {
           y={centerY - 100}
           style={{
             color: 'black',
-            fontSize: '36px',
+            fontSize: 36,
           }}
           originX={0.5}
           originY={0.5}

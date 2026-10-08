@@ -41,7 +41,7 @@ export function Button(props: Props) {
       style={{
         color: Color.ivory,
         fontFamily: 'monospace',
-        fontSize: '20px',
+        fontSize: 20,
         backgroundColor: Color.darkslategray,
         padding: { x: 20, y: 10 },
       }}

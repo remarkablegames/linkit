@@ -32,8 +32,8 @@ export class Toast extends Phaser.GameObjects.Container {
     this.label = scene.add
       .text(0, 0, '', {
         fontFamily: 'Arial',
-        fontSize: '18px',
-        color: '#ffffff',
+        fontSize: 18,
+        color: 'white',
         align: 'center',
         wordWrap: { width: 250 },
       })

@@ -22,7 +22,7 @@ export class Intro extends Phaser.Scene {
           y={centerY - 100}
           style={{
             color: 'black',
-            fontSize: '48px',
+            fontSize: 48,
           }}
           originX={0.5}
           originY={0.5}

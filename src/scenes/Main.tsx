@@ -160,7 +160,7 @@ export class Main extends Phaser.Scene {
         y={32}
         style={{
           color: 'black',
-          fontSize: '36px',
+          fontSize: 36,
         }}
         originX={0.5}
         originY={0.5}
