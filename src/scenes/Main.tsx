@@ -2,7 +2,7 @@ import Phaser from 'phaser';
 import { render, Text } from 'phaser-jsx';
 
 import { key } from '../constants';
-import { Circle, Line } from '../gameobjects';
+import { Circle, Line, Toast } from '../gameobjects';
 import {
   areLinesIntersecting,
   getBackgroundColor,
@@ -13,6 +13,7 @@ import { getLevel, type Level } from '../levels';
 export class Main extends Phaser.Scene {
   private level!: Level;
   private start?: Circle;
+  private toast!: Toast;
 
   constructor() {
     super(key.scene.main);
@@ -33,6 +34,7 @@ export class Main extends Phaser.Scene {
     this.renderLevelTitle();
     this.renderCircles();
     Line.setGroup(this);
+    this.toast = new Toast(this, this.scale.width / 2, 100);
 
     this.input.on('pointerdown', this.pointerdown, this);
     if (this.game.device.os.desktop) {
@@ -213,7 +215,7 @@ export class Main extends Phaser.Scene {
   private checkSolution(): boolean {
     if (areLinesIntersecting(Line.getGroup(this).getChildren() as Line[])) {
       playSound(key.audio.error, this);
-      alert('Lines must not intersect.');
+      this.toast.show('Lines must not intersect');
       return false;
     }
 
