@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
-import { _ } from '../constants';
+import { _, key } from '../constants';
+import { playSound } from '../helpers';
 import type { Line } from './Line';
 
 const CIRCLE_CONTAINER = 'CIRCLE_CONTAINER';
@@ -33,6 +34,7 @@ export class Circle extends Phaser.GameObjects.Arc {
 
     if (this.scene.game.device.os.desktop) {
       this.on('pointerover', () => {
+        playSound(key.audio.tick, scene);
         this.setScale(1.25);
       });
 
