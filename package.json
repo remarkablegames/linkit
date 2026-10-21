@@ -22,8 +22,8 @@
     "phaser-jsx": "1.0.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "21.2.3",
-    "@commitlint/config-conventional": "21.2.3",
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
     "@eslint/compat": "2.1.1",
     "@eslint/js": "10.0.1",
     "@types/yargs": "17.0.35",
