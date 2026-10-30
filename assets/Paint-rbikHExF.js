@@ -1,0 +1,1 @@
+import{d as e,f as t,g as n,l as r,m as i}from"./index-BH5cVbJR.js";var a=class extends i{color;fill;stroke;doLoad(i){i.color!==void 0&&(this.color=t.create(this.color,i.color)),n(this,`fill`,i.fill,()=>new e),n(this,`stroke`,i.stroke,()=>new r)}};export{a as t};
